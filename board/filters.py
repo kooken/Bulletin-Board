@@ -8,4 +8,4 @@ class AdFilter(django_filters.rest_framework.FilterSet):
 
     class Meta:
         model = Ad
-        fields = ("title", )
+        fields = ("title",)

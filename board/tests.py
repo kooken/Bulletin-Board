@@ -3,15 +3,16 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 from django.contrib.auth import get_user_model
-from board.models import Ad, Comment
+from board.models import Ad
 
 User = get_user_model()
+
 
 @pytest.mark.django_db
 class AdTestCase:
 
     @pytest.fixture(autouse=True)
-    def setUp(self):
+    def setup(self):
         self.client = APIClient()
         self.user = User.objects.create_user(email="user@example.com", password="password")
         self.client.force_authenticate(user=self.user)

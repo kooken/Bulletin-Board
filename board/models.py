@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.db import models
 
-
 NULLABLE = {'blank': True,
             'null': True}
 
@@ -47,7 +46,7 @@ class Ad(models.Model):
     class Meta:
         verbose_name = "Ad"
         verbose_name_plural = "Ads"
-        ordering = ("-created_at", )
+        ordering = ("-created_at",)
 
 
 class Comment(models.Model):
@@ -78,4 +77,4 @@ class Comment(models.Model):
     class Meta:
         verbose_name = "Comment"
         verbose_name_plural = "Comments"
-        ordering = ("-created_at", )
+        ordering = ("-created_at",)

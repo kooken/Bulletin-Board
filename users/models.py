@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser, AbstractUser
+from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 from users.managers import UserManager
 from phonenumber_field.modelfields import PhoneNumberField
@@ -16,11 +16,10 @@ class UserRoles:
 
 
 class User(AbstractBaseUser):
-    """Модель пользователя"""
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'phone']
 
-    objects = UserManager()  # менеджер объектов
+    objects = UserManager()
 
     first_name = models.CharField(
         max_length=64,
@@ -30,7 +29,7 @@ class User(AbstractBaseUser):
 
     last_name = models.CharField(
         max_length=64,
-        verbose_name="Фамилия",
+        verbose_name="Surname",
         help_text="Enter your surname here",
     )
 
