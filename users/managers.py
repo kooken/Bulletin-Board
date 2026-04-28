@@ -26,8 +26,7 @@ class UserManager(BaseUserManager):
             last_name=last_name,
             phone=phone,
             password=password,
-            role="admin"
         )
-
+        user.role = "admin"
         user.save(using=self._db)
         return user

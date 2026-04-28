@@ -28,11 +28,10 @@ class AdViewSet(viewsets.ModelViewSet):
         return AdSerializer
 
     def get_permissions(self):
-        permission_classes = (AllowAny,)
-        if self.action in ["retrieve"]:
-            permission_classes = (AllowAny,)
-        elif self.action in ["create", "update", "partial_update", "destroy", "me"]:
+        if self.action in ["create", "update", "partial_update", "destroy", "me"]:
             permission_classes = (IsOwner | IsAdmin,)
+        else:
+            permission_classes = (AllowAny,)
         return tuple(permission() for permission in permission_classes)
 
     def get_queryset(self):
@@ -40,14 +39,9 @@ class AdViewSet(viewsets.ModelViewSet):
             return Ad.objects.filter(author=self.request.user).all()
         return Ad.objects.all()
 
-    @action(
-        detail=False,
-        methods=[
-            "get",
-        ],
-    )
+    @action(detail=False, methods=["get"])
     def me(self, request, *args, **kwargs):
-        return super().list(self, request, *args, **kwargs)
+        return super().list(request, *args, **kwargs)
 
 
 class CommentViewSet(viewsets.ModelViewSet):

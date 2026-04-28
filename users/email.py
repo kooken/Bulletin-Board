@@ -5,4 +5,4 @@ class PasswordResetEmail(BaseEmailMessage):
     template_name = "email/password_reset.html"
 
     def get_context_data(self):
-        pass
+        return super().get_context_data()
